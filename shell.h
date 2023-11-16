@@ -16,7 +16,7 @@
 char *get_path(char *name);
 int check_slash(const char *str);
 char *path_cmd(char *path, char *cmd);
-int cc_tokenize(char *line, char *args);
+char *tokenize(char *str, char *line);
 char *cc_readline(void);
 void execute_cmd(char *input, char *argv[], char **env);
 void display_prompt(void);
@@ -27,7 +27,7 @@ char *handle_hashtag(char *name);
 int handle_builtin(char **args);
 int change_dir(char **cmd);
 void print_env(char **env);
-int cc_exit(char **args, char *str);
+int cc_exit(char **ar, char *str);
 void h_exit(char *index, int status);
 int cc_unsetenv(char **args);
 int cc_setenv(char **args);
@@ -48,6 +48,7 @@ int is_delim(char c, char *delim);
 int _isalpha(int c);
 
 /* Buffers */
+#define PATH_MAX 4096
 #define READ_BUF_SIZE 1024
 #define WRITE_BUF_SIZE 1024
 #define BUF_FLUSH -1

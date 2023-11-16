@@ -27,10 +27,10 @@ int change_dir(char **cmd)
 	char cwd[PATH_MAX];
 
 	if (cmd[1] == NULL)
-		value = chdir(_getenv("HOME"));
+		value = chdir(getenv("HOME"));
 	else if (_strcmp(cmd[1], "-") == 0)
 	{
-		value = chdir(_getenv("OLDPWD"));
+		value = chdir(getenv("OLDPWD"));
 	}
 	else
 		value = chdir(cmd[1]);
@@ -43,8 +43,8 @@ int change_dir(char **cmd)
 	else if (value != -1)
 	{
 		getcwd(cwd, sizeof(cwd));
-		cc_setenv("OLDPWD", _getenv("PWD"), 1);
-		cc_setenv("PWD", cwd, 1);
+		setenv("OLDPWD", getenv("PWD"), 1);
+		setenv("PWD", cwd, 1);
 	}
 	return (0);
 }
@@ -62,7 +62,7 @@ int handle_builtin(char **args)
 	if (!_strcmp(args[0], "exit"))
 		cc_exit(args);
 	else if (!_strcmp(args[0], "env"))
-		print_env();
+		print_env(args);
 	else if (!_strcmp(args[0], "setenv"))
 		cc_setenv(args);
 	else if (!_strcmp(args[0], "unsetenv"))

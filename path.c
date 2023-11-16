@@ -28,8 +28,8 @@ char *path_cmd(char *path, char *cmd)
 	struct stat status;
 	char *path_buff = NULL;
 
-	name = _strdup(path);
-	token = _strtok(name, ":");
+	name = strdup(path);
+	token = strtok(name, ":");
 
 	while (token)
 	{
@@ -38,23 +38,23 @@ char *path_cmd(char *path, char *cmd)
 			free(path_buff);
 			path_buff = NULL;
 		}
-		path_buff = malloc(_strlen(token) + _strlen(cmd) + 2);
+		path_buff = malloc(strlen(token) + strlen(cmd) + 2);
 		if (!path_buff)
 		{
 			perror("Command failed");
 			exit(EXIT_FAILURE);
 		}
-		_strcpy(path_buff, token);
-		_strcat(path_buff, "/");
-		_strcat(path_buff, cmd);
-		_strcat(path_buff, "\0");
+		strcpy(path_buff, token);
+		strcat(path_buff, "/");
+		strcat(path_buff, cmd);
+		strcat(path_buff, "\0");
 
 		if (stat(path_buff, &status) == 0 && access(path_buff, X_OK) == 0)
 		{
 			free(name);
 			return (path_buff);
 		}
-		token = _strtok(NULL, ":");
+		token = strtok(NULL, ":");
 	}
 	free(name);
 	if (path_buff)
@@ -77,7 +77,7 @@ char *get_path(char *name)
 
 	if (check_slash(name) &&
 			access(name, X_OK) == 0)
-		return (_strdup(name));
+		return (strdup(name));
 
 	if (!path)
 	{
@@ -89,7 +89,7 @@ char *get_path(char *name)
 
 	if (value == NULL)
 	{
-		write(2, name, _strlen(name));
+		write(2, name, strlen(name));
 		write(2, "Error: command unavailable\n", 26);
 		return (NULL);
 	}
@@ -107,7 +107,7 @@ char *handle_hashtag(char *name)
 {
 	char *hashtag;
 
-	hashtag = _strstr(name, " #");
+	hashtag = strstr(name, " #");
 
 	if (hashtag)
 	{

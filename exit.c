@@ -2,36 +2,36 @@
 
 /**
   * cc_exit - handles the exit status
-  * @args: argument count
+  * @ar: argument count
   * @str: checks the status of exit
   *
   * Return: exit status, 1 if otherwise
   */
 
-int cc_exit(char **args, char *str)
+int cc_exit(char **ar, char *str)
 {
 	char *index;
 	int status, i;
 
-	if (args[1] != NULL)
+	if (ar[1] != NULL)
 	{
 		status = 0;
-		index = args[1];
+		index = ar[1];
 
 		for (i = 0; index[i] != '\0'; i++)
 		{
 			if (index[i] < '0' || index[i] > '9')
 			{
-				_exit(input, 2);
+				h_exit(str, 2);
 				return (1);
 			}
 			status = status * 10 + (index[i] - '0');
 		}
-		_exit(input, status);
+		h_exit(str, status);
 	}
 	else
 	{
-		_exit(str, 127);
+		h_exit(str, 127);
 	}
 	return (1);
 }

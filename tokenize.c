@@ -1,27 +1,28 @@
 #include "shell.h"
 
 /**
-  * cc_tokenize - tokenizes the input strings
-  * @line: pointer to parse
-  * @args: array of strings
-  * Return: to a pointer
+  * tokenize - tokenizes the input strings
+  * @str: pointer
+  * @line: the array of strings
+  *
+  * Return: Number of the items tokenized
   */
 
-int cc_tokenize(char *line, char *args)
+char *tokenize(char *str, char *line)
 {
-	int tokens;
+	int count;
 	char *token;
 
-	tokens = 0;
-	token = _strtok(line, " \n");
+	count = 0;
+	token = strtok(input, " \n");
 
 	while (token)
 	{
-		args[tokens] = token;
-		token = _strtok(NULL, " \n");
-		tokens++;
+		args[count] = token;
+		token = strtok(NULL, " \n");
+		count++;
 	}
 
-	args[tokens] = NULL;
-	return (tokens);
+	args[count] = NULL;
+	return (count);
 }

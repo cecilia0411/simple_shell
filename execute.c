@@ -15,7 +15,7 @@ void execute_cmd(char *input, char *argv[], char **env)
 	pid_t child_pid;
 
 	name = argv[0];
-	num = cc_tokenize(input, args);
+	num = tokenize(input, args);
 
 	if (num == 0)
 		return;
