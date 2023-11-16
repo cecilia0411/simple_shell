@@ -37,12 +37,12 @@ int cc_exit(char **args, char *str)
 }
 
 /**
-  * _exit - handles the exit function
+  * h_exit - handles the exit function
   * @index: index value
   * @status: exits the status of the code
   */
 
-void _exit(char *index, int status)
+void h_exit(char *index, int status)
 {
 	free(index);
 	exit(status);

@@ -28,7 +28,7 @@ int handle_builtin(char **args);
 int change_dir(char **cmd);
 void print_env(char **env);
 int cc_exit(char **args, char *str);
-void _exit(char *index, int status);
+void h_exit(char *index, int status);
 int cc_unsetenv(char **args);
 int cc_setenv(char **args);
 
@@ -44,7 +44,6 @@ char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 char *_strdup(char *str);
 char *_strchr(char *s, char c);
-int interactive(info_t *info);
 int is_delim(char c, char *delim);
 int _isalpha(int c);
 
